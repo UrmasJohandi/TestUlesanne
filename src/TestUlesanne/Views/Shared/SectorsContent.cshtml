@@ -1,0 +1,32 @@
+﻿@model UsersChoiceViewModel
+
+@{
+    var sectorsHtml = "";
+
+    foreach (var sector in Model.UsersChoices)
+    {
+        sectorsHtml += "<option value=\"" + 
+            sector.SectorId + "\"" + 
+            " data-level=\"" + sector.Level + "\"" + 
+            " data-parent=\"" + sector.ParentId + "\"" + 
+            (sector.Selected ? " selected" : "") + ">" +
+            Tabs(sector.Level) + sector.Name + "</option>" + "\r\n";
+    }
+}
+
+@Html.Raw(sectorsHtml)
+
+@functions
+{ 
+    private string Tabs(int level)
+    {
+        var tabs = "";
+
+        for (int i = 0; i <= level; i++)
+        {
+            tabs += "&nbsp;&nbsp;&nbsp;&nbsp;";
+        }
+
+        return tabs;
+    }
+}

@@ -1,0 +1,41 @@
+﻿@model UsersChoiceViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<br />
+
+<p>Please enter your name and pick the Sectors you are currently involved in.</p>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Save" method="post">
+    <div class="form-group">
+        <input asp-for="User.Id" type="hidden" class="form-control" />
+        <label>Name:</label><input asp-for="User.Name" class="form-control" />
+    </div>
+
+    <br />
+
+    <label>Sectors:</label>
+    <select class="form-control" multiple size="25" id="userschoices">
+        @Html.Partial("SectorsContent", Model)
+    </select>
+
+    <br />
+
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="checkbox" class="form-check-input">
+            Agree to terms
+        </label>
+    </div>
+
+    <br />
+
+    <button type="button" class="btn btn-primary" id="savebutton">Save</button>
+
+    <br />
+    <br />
+</form>
